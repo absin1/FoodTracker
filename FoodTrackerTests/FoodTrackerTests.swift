@@ -33,4 +33,31 @@ class FoodTrackerTests: XCTestCase {
         }
     }
     
+    //MARK: Meal Class Tests
+    
+    // Confirm that a Meal class returns a Meal Object when passed valid parameters
+    func testMealInitializationSucceeds(){
+        // Zero rating
+        let zeroRatingMeal = Meal.init(name: "Zero", photo: nil, rating: 0)
+        XCTAssertNotNil(zeroRatingMeal)
+        
+        // Highest positive rating
+        let positiveRatingMeal = Meal.init(name: "Positive", photo: nil, rating: 5)
+        XCTAssertNotNil(positiveRatingMeal)
+    }
+    
+    // Confirm that the meal initializer fails when passed a negative rating or empty name
+    func testMealInializationFails(){
+        // Negative rating
+        let negativeRatingMeal = Meal.init(name: "Negative", photo: nil, rating: -2)
+        XCTAssertNil(negativeRatingMeal)
+        
+        // Empty name meal
+        let emptyNameMeal = Meal.init(name: "", photo: nil, rating: 0)
+        XCTAssertNil(emptyNameMeal)
+        
+        // Rating exceeds maximum
+        let excessRatingMeal = Meal.init(name: "Excess", photo: nil, rating: 6)
+        XCTAssertNil(excessRatingMeal)
+    }
 }
